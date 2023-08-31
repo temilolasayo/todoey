@@ -1,11 +1,20 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:todoey/constants/constants.dart';
+import 'package:todoey/constants/todo_list.dart';
+import 'package:todoey/models/todos.dart';
 import 'package:todoey/widgets/add_task.dart';
 import 'package:todoey/widgets/task_list.dart';
 
+List<ToDo> todos = toDoList;
+
 class TasksScreen extends StatelessWidget {
-  const TasksScreen({super.key});
+  const TasksScreen({
+    Key? key,
+    required this.todos,
+  }) : super(key: key);
+
+  final List<ToDo> todos;
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +22,6 @@ class TasksScreen extends StatelessWidget {
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            print("object");
             showModalBottomSheet(
               context: context,
               isScrollControlled: true,

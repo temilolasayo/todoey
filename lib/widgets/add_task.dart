@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/constants/constants.dart';
+import 'package:todoey/constants/todo_list.dart';
+import 'package:todoey/models/todos.dart';
+import 'package:todoey/screens/tasks_screen.dart';
 
-class AddTask extends StatelessWidget {
+List<ToDo> todos = toDoList;
+// late TextEditingController todoEditingController;
+late String newTodo;
+
+class AddTask extends StatefulWidget {
   const AddTask({super.key});
 
+  @override
+  State<AddTask> createState() => _AddTaskState();
+}
+
+class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +33,7 @@ class AddTask extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const Text(
-              "Add Task",
+              "New Task",
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontSize: 30.0,
@@ -29,6 +41,10 @@ class AddTask extends StatelessWidget {
               ),
             ),
             TextFormField(
+              // controller: todoEditingController,
+              onChanged: (value) {
+                newTodo = value;
+              },
               textAlign: TextAlign.center,
               decoration: const InputDecoration(hoverColor: kPrimaryColor),
             ),
@@ -36,7 +52,16 @@ class AddTask extends StatelessWidget {
               height: 30.0,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  todos.add(ToDo(todoText: newTodo));
+                });
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => TasksScreen(todos: todos)),
+                    ));
+              },
               style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(kPrimaryColor),
               ),
