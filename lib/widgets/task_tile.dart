@@ -5,12 +5,14 @@ import 'package:todoey/constants/constants.dart';
 class TaskTile extends StatelessWidget {
   final String todoText;
   final void Function(bool?) getTodoStatus;
+  final void Function() deleteTodo;
   final bool isChecked;
 
   const TaskTile({
     Key? key,
     required this.todoText,
     required this.getTodoStatus,
+    required this.deleteTodo,
     required this.isChecked,
   }) : super(key: key);
 
@@ -20,9 +22,9 @@ class TaskTile extends StatelessWidget {
       leading: Text(
         todoText,
         style: TextStyle(
-          color: kPrimaryColor,
-          decoration: isChecked ? TextDecoration.lineThrough : null,
-        ),
+            color: kPrimaryColor,
+            decoration: isChecked ? TextDecoration.lineThrough : null,
+            fontSize: 18.0),
       ),
       trailing: Checkbox(
         value: isChecked,
@@ -30,6 +32,7 @@ class TaskTile extends StatelessWidget {
         checkColor: kSecondaryColor,
         onChanged: getTodoStatus,
       ),
+      onLongPress: deleteTodo,
     );
   }
 }

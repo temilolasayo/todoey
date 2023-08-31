@@ -21,4 +21,9 @@ class TodoData extends ChangeNotifier {
     todo.checkBoxStatus();
     notifyListeners();
   }
+
+  void deleteTodo(int index) {
+    toDoList.removeAt(index);
+    notifyListeners();
+  }
 }

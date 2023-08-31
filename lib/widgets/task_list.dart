@@ -13,12 +13,17 @@ class TaskList extends StatelessWidget {
         return ListView.builder(
             itemCount: todoData.todoListLength,
             itemBuilder: ((context, index) {
+              final todo = todoData.toDoList[index];
               return TaskTile(
-                  todoText: todoData.toDoList[index].todoText,
-                  isChecked: todoData.toDoList[index].isChecked,
-                  getTodoStatus: (isCheck) {
-                    todoData.checkTodoStatus(todoData.toDoList[index]);
-                  });
+                todoText: todo.todoText,
+                isChecked: todo.isChecked,
+                getTodoStatus: (isCheck) {
+                  todoData.checkTodoStatus(todo);
+                },
+                deleteTodo: () {
+                  todoData.deleteTodo(index);
+                },
+              );
             }));
       },
     );
