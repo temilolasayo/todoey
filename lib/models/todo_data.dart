@@ -8,6 +8,11 @@ class TodoData extends ChangeNotifier {
     ToDo(todoText: "Go to the Salon"),
   ];
 
+  void addNewTodo(String newTodo) {
+    toDoList.add(ToDo(todoText: newTodo));
+    notifyListeners();
+  }
+
   int get todoListLength {
     return toDoList.length;
   }
