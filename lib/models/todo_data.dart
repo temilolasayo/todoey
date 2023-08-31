@@ -16,4 +16,9 @@ class TodoData extends ChangeNotifier {
   int get todoListLength {
     return toDoList.length;
   }
+
+  checkTodoStatus(ToDo todo) {
+    todo.checkBoxStatus();
+    notifyListeners();
+  }
 }

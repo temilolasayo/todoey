@@ -7,14 +7,9 @@ import 'package:todoey/models/todo_data.dart';
 // late TextEditingController todoEditingController;
 late String newTodo;
 
-class AddTask extends StatefulWidget {
+class AddTask extends StatelessWidget {
   const AddTask({super.key});
 
-  @override
-  State<AddTask> createState() => _AddTaskState();
-}
-
-class _AddTaskState extends State<AddTask> {
   @override
   Widget build(BuildContext context) {
     return Consumer<TodoData>(
