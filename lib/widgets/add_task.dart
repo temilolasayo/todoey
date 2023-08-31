@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:todoey/constants/constants.dart';
-import 'package:todoey/constants/todo_list.dart';
+import 'package:todoey/models/todo_data.dart';
 import 'package:todoey/models/todos.dart';
 import 'package:todoey/screens/tasks_screen.dart';
 
-List<ToDo> todos = toDoList;
+// List<ToDo> todos = toDoList;
 // late TextEditingController todoEditingController;
 late String newTodo;
 
@@ -54,12 +55,15 @@ class _AddTaskState extends State<AddTask> {
             ElevatedButton(
               onPressed: () {
                 setState(() {
-                  todos.add(ToDo(todoText: newTodo));
+                  Provider.of<TodoData>(context)
+                      .toDoList
+                      .add(ToDo(todoText: newTodo));
+                  // notifyListeners;
                 });
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: ((context) => TasksScreen(todos: todos)),
+                      builder: ((context) => const TasksScreen()),
                     ));
               },
               style: const ButtonStyle(

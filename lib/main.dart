@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/constants/todo_list.dart';
-import 'package:todoey/models/todos.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/todo_data.dart';
 import 'package:todoey/screens/tasks_screen.dart';
-
-List<ToDo> todos = toDoList;
 
 void main() {
   runApp(const Home());
@@ -14,9 +12,11 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: TasksScreen(
-      todos: todos,
-    ));
+    return ChangeNotifierProvider(
+      create: (context) {
+        return TodoData();
+      },
+      child: const MaterialApp(home: TasksScreen()),
+    );
   }
 }
