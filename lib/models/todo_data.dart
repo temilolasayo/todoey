@@ -1,15 +1,21 @@
+import 'dart:collection';
+
 import 'package:flutter/material.dart';
 import 'package:todoey/models/todos.dart';
 
 class TodoData extends ChangeNotifier {
-  List<ToDo> toDoList = [
+  final List<ToDo> _toDoList = [
     ToDo(todoText: "Buy Milk"),
     ToDo(todoText: "Go to the Gym"),
     ToDo(todoText: "Go to the Salon"),
   ];
 
+  UnmodifiableListView<ToDo> get toDoList {
+    return UnmodifiableListView(_toDoList);
+  }
+
   void addNewTodo(String newTodo) {
-    toDoList.add(ToDo(todoText: newTodo));
+    _toDoList.add(ToDo(todoText: newTodo));
     notifyListeners();
   }
 
