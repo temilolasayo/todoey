@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:todoey/constants/constants.dart';
+import 'package:todoey/widgets/add_task.dart';
 import 'package:todoey/widgets/task_list.dart';
 
 class TasksScreen extends StatelessWidget {
@@ -11,7 +12,19 @@ class TasksScreen extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            print("object");
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context) => SingleChildScrollView(
+                child: Container(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: const AddTask()),
+              ),
+            );
+          },
           backgroundColor: kPrimaryColor,
           child: const Icon(
             Icons.add,
